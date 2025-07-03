@@ -22,7 +22,7 @@
         break;
       case "following":
         if (args.Length == 3) {
-          projectRepository.Follow(args[2], args[0]);
+          projectRepository.Follow(args[0], args[2]);
         }
         break;
       case "wall":

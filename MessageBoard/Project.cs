@@ -8,57 +8,70 @@ class Project
 {
   public string Name { get; set; } = string.Empty;
   public List<Posting> Postings { get; set; } = new List<Posting>();
-  public List<string> Followers { get; set; } = new List<string>();
+}
+
+class Posting {
+  public string Author { get; set; } = string.Empty;
+  public string Message { get; set; } = string.Empty;
+  public DateTime CreatedAt { get; set; }
+}
+
+class MessageBoardData
+{
+  public Dictionary<string, Project> Projects { get; set; } = new Dictionary<string, Project>();
+  public Dictionary<string, List<string>> Followers { get; set; } = new Dictionary<string, List<string>>();
 }
 
 class ProjectRepository
 {
-  private Dictionary<string, Project> projects = new Dictionary<string, Project>();
+  private MessageBoardData messageBoard = new MessageBoardData();
 
   public void Post(string projectName, Posting posting)
   {
-    if (!projects.ContainsKey(projectName))
+    if (!messageBoard.Projects.ContainsKey(projectName))
     {
-      projects[projectName] = new Project { Name = projectName };
+      messageBoard.Projects[projectName] = new Project { Name = projectName };
     }
-    projects[projectName].Postings.Add(posting);
+    messageBoard.Projects[projectName].Postings.Add(posting);
 
     Save();
   }
 
-  public void Follow(string projectName, string follower)
+  public void Follow(string follower, string projectName)
   {
-    if (projects.ContainsKey(projectName))
+    if (!messageBoard.Followers.ContainsKey(follower))
     {
-      if (!projects[projectName].Followers.Contains(follower))
-      {
-        projects[projectName].Followers.Add(follower);
-        Save();
-      }
+      messageBoard.Followers[follower] = new List<string>();
     }
+    if (!messageBoard.Followers[follower].Contains(projectName))
+    {
+      messageBoard.Followers[follower].Add(projectName);
+    }
+
+    Save();
   }
 
   public IEnumerable<Posting> Read(string projectName)
   {
-    if (projects.ContainsKey(projectName))
+    if (messageBoard.Projects.ContainsKey(projectName))
     {
-      return projects[projectName].Postings;
+      return messageBoard.Projects[projectName].Postings;
     }
     return new List<Posting>();
   }
 
   private void Save()
   {
-    string json = JsonSerializer.Serialize(projects, new JsonSerializerOptions { WriteIndented = true });
-    File.WriteAllText("projects.json", json);
+    string json = JsonSerializer.Serialize(messageBoard, new JsonSerializerOptions { WriteIndented = true });
+    File.WriteAllText("messageboard.json", json);
   }
 
   public void Load()
   {
-    if (File.Exists("projects.json"))
+    if (File.Exists("messageboard.json"))
     {
-      string json = File.ReadAllText("projects.json");
-      projects = JsonSerializer.Deserialize<Dictionary<string, Project>>(json) ?? new Dictionary<string, Project>();
+      string json = File.ReadAllText("messageboard.json");
+      messageBoard = JsonSerializer.Deserialize<MessageBoardData>(json) ?? new MessageBoardData();
     }
   }
 }
