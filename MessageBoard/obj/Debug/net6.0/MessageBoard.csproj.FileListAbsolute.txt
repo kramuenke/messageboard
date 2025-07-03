@@ -1,0 +1,15 @@
+/Users/kai.ramuenke/src/inlogik/MessageBoard/bin/Debug/net6.0/MessageBoard
+/Users/kai.ramuenke/src/inlogik/MessageBoard/bin/Debug/net6.0/MessageBoard.deps.json
+/Users/kai.ramuenke/src/inlogik/MessageBoard/bin/Debug/net6.0/MessageBoard.runtimeconfig.json
+/Users/kai.ramuenke/src/inlogik/MessageBoard/bin/Debug/net6.0/MessageBoard.dll
+/Users/kai.ramuenke/src/inlogik/MessageBoard/bin/Debug/net6.0/MessageBoard.pdb
+/Users/kai.ramuenke/src/inlogik/MessageBoard/obj/Debug/net6.0/MessageBoard.csproj.AssemblyReference.cache
+/Users/kai.ramuenke/src/inlogik/MessageBoard/obj/Debug/net6.0/MessageBoard.GeneratedMSBuildEditorConfig.editorconfig
+/Users/kai.ramuenke/src/inlogik/MessageBoard/obj/Debug/net6.0/MessageBoard.AssemblyInfoInputs.cache
+/Users/kai.ramuenke/src/inlogik/MessageBoard/obj/Debug/net6.0/MessageBoard.AssemblyInfo.cs
+/Users/kai.ramuenke/src/inlogik/MessageBoard/obj/Debug/net6.0/MessageBoard.csproj.CoreCompileInputs.cache
+/Users/kai.ramuenke/src/inlogik/MessageBoard/obj/Debug/net6.0/MessageBoard.dll
+/Users/kai.ramuenke/src/inlogik/MessageBoard/obj/Debug/net6.0/refint/MessageBoard.dll
+/Users/kai.ramuenke/src/inlogik/MessageBoard/obj/Debug/net6.0/MessageBoard.pdb
+/Users/kai.ramuenke/src/inlogik/MessageBoard/obj/Debug/net6.0/MessageBoard.genruntimeconfig.cache
+/Users/kai.ramuenke/src/inlogik/MessageBoard/obj/Debug/net6.0/ref/MessageBoard.dll
