@@ -17,10 +17,13 @@
             CreatedAt = DateTime.Now
           };
 
-          projectRepository.Post(args[2].Substring(1), posting);
+          projectRepository.Post(ProjectName(args[2]), posting);
         }
         break;
       case "following":
+        if (args.Length == 3) {
+          projectRepository.Follow(args[2], args[0]);
+        }
         break;
       case "wall":
         break;
@@ -35,5 +38,10 @@
         }
         break;
     }
+  }
+
+  static string ProjectName(string input)
+  {
+    return input.Length > 0 ? input.Substring(1) : input;
   }
 }

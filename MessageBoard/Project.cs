@@ -8,6 +8,7 @@ class Project
 {
   public string Name { get; set; } = string.Empty;
   public List<Posting> Postings { get; set; } = new List<Posting>();
+  public List<string> Followers { get; set; } = new List<string>();
 }
 
 class ProjectRepository
@@ -23,6 +24,18 @@ class ProjectRepository
     projects[projectName].Postings.Add(posting);
 
     Save();
+  }
+
+  public void Follow(string projectName, string follower)
+  {
+    if (projects.ContainsKey(projectName))
+    {
+      if (!projects[projectName].Followers.Contains(follower))
+      {
+        projects[projectName].Followers.Add(follower);
+        Save();
+      }
+    }
   }
 
   public IEnumerable<Posting> Read(string projectName)
