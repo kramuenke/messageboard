@@ -1,3 +1,9 @@
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Text.Json;
+
 class Project
 {
   public string Name { get; set; } = string.Empty;
@@ -15,6 +21,8 @@ class ProjectRepository
       projects[projectName] = new Project { Name = projectName };
     }
     projects[projectName].Postings.Add(posting);
+
+    Save();
   }
 
   public IEnumerable<Posting> Read(string projectName)
@@ -24,5 +32,20 @@ class ProjectRepository
       return projects[projectName].Postings;
     }
     return new List<Posting>();
+  }
+
+  private void Save()
+  {
+    string json = JsonSerializer.Serialize(projects, new JsonSerializerOptions { WriteIndented = true });
+    File.WriteAllText("projects.json", json);
+  }
+
+  public void Load()
+  {
+    if (File.Exists("projects.json"))
+    {
+      string json = File.ReadAllText("projects.json");
+      projects = JsonSerializer.Deserialize<Dictionary<string, Project>>(json) ?? new Dictionary<string, Project>();
+    }
   }
 }
