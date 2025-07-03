@@ -60,6 +60,17 @@ class ProjectRepository
     return new List<Posting>();
   }
 
+  public IEnumerable<Project> Wall(string follower)
+  {
+    if (messageBoard.Followers.ContainsKey(follower))
+    {
+      return messageBoard.Followers[follower]
+        .Select(projectName => messageBoard.Projects.GetValueOrDefault(projectName))
+        .Where(project => project != null);
+    }
+    return Enumerable.Empty<Project>();
+  }
+
   private void Save()
   {
     string json = JsonSerializer.Serialize(messageBoard, new JsonSerializerOptions { WriteIndented = true });

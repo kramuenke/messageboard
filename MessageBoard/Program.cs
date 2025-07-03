@@ -26,6 +26,15 @@
         }
         break;
       case "wall":
+        var projects = projectRepository.Wall(args[0]);
+        foreach (var project in projects)
+        {
+          Console.WriteLine($"Project: {project.Name}");
+          foreach (var posting in project.Postings)
+          {
+            Console.WriteLine($"{posting.Author}: {posting.Message} ({(DateTime.Now - posting.CreatedAt).TotalMinutes} minutes ago)");
+          }
+        }
         break;
       default:
         var postings = projectRepository.Read(args[0]);
